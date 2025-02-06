@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;;
+import java.util.Collection;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(name = "/fibonacci")
+@RequestMapping(path = "/fibonacci")
 public class FibNumberController {
 
     private final FibNumberService fibNumberService;
 
-    @GetMapping(name = "/{id}")
-    public ResponseEntity<FibNumberDTO> getFibNumber(@PathVariable int id) {
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<FibNumberDTO> getFibNumberById(@PathVariable int id) {
         FibNumberDTO fibNumberDTO = fibNumberService.getById(id);
         return new ResponseEntity<>(fibNumberDTO, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<Collection<FibNumberDTO>> getFibNumbers() {
+    public ResponseEntity<Collection<FibNumberDTO>> getAllFibNumbers() {
         Collection<FibNumberDTO> finNumberCollection = fibNumberService.getAll();
         return new ResponseEntity<>(finNumberCollection, HttpStatus.OK);
     }

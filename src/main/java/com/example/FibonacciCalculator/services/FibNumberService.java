@@ -17,7 +17,7 @@ public class FibNumberService implements CRUDInterface<FibNumberDTO>{
 
     @Override
     public FibNumberDTO getById(int id) {
-        FibNumberEntities fibNumberEntities = fibonacciRepository.findById(id).orElseThrow(null);
+        FibNumberEntities fibNumberEntities = fibonacciRepository.findById(id).orElseThrow();
         return mapToFibNumberDTO(fibNumberEntities);
     }
 
@@ -35,12 +35,5 @@ public class FibNumberService implements CRUDInterface<FibNumberDTO>{
         fibNumberDTO.setId(fibNumberEntities.getId());
         fibNumberDTO.setFibNumber(fibNumberEntities.getNumber());
         return fibNumberDTO;
-    }
-
-    public static FibNumberEntities mapToFibNumberEntities(FibNumberDTO fibNumberDTO) {
-        FibNumberEntities fibNumberEntities = new FibNumberEntities();
-        fibNumberEntities.setId(fibNumberDTO.getId());
-        fibNumberEntities.setNumber(fibNumberDTO.getFibNumber());
-        return fibNumberEntities;
     }
 }
